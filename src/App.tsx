@@ -1,5 +1,6 @@
 import PlayerControls from './components/PlayerControls'
 import TrackList from './components/TrackList'
+import Visualizer from './components/Visualizer'
 import { tracks } from './data/tracks'
 import { useAudioPlayer } from './hooks/useAudioPlayer'
 
@@ -23,6 +24,10 @@ function App() {
           onPause={player.pause}
           onResume={player.resume}
           onRetry={player.retry}
+        />
+        <Visualizer
+          analyser={player.analyser}
+          active={state.status === 'playing'}
         />
         <TrackList tracks={tracks} state={state} onSelect={player.select} />
       </main>
