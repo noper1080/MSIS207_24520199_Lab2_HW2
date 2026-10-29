@@ -14,10 +14,13 @@ function App() {
 
   return (
     <>
+      <a className="skip-link" href="#main">
+        Skip to main content
+      </a>
       <header>
         <h1>Audio Visualizer Queue</h1>
       </header>
-      <main>
+      <main id="main" tabIndex={-1}>
         <PlayerControls
           state={state}
           trackTitle={currentTrack?.title ?? null}

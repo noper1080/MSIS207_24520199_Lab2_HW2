@@ -36,14 +36,15 @@ function PlayerControls({
   return (
     <section aria-labelledby="player-heading">
       <h2 id="player-heading">Now playing</h2>
-      <p>{describeState(state, trackTitle)}</p>
+      {/* Always mounted so screen readers announce every status change. */}
+      <div aria-live="polite">
+        <p>{describeState(state, trackTitle)}</p>
+        {state.status === 'error' && <p>{state.message}</p>}
+      </div>
       {state.status === 'error' ? (
-        <>
-          <p>{state.message}</p>
-          <button type="button" onClick={onRetry}>
-            Retry
-          </button>
-        </>
+        <button type="button" onClick={onRetry}>
+          Retry
+        </button>
       ) : (
         <button
           type="button"
